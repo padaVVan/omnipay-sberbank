@@ -195,7 +195,7 @@ class Gateway extends AbstractGateway
      * Request for order registration with pre-authorization
      *
      * @param array $options array of options
-     * @return RequestInterface
+     * @return AuthorizeRequest
      */
     public function authorize(array $options = []): RequestInterface
     {
@@ -206,7 +206,7 @@ class Gateway extends AbstractGateway
      * Request for order registration
      *
      * @param array $options array of options
-     * @return RequestInterface
+     * @return PurchaseRequest
      */
     public function purchase(array $options = []): RequestInterface
     {
@@ -217,7 +217,7 @@ class Gateway extends AbstractGateway
      * Order status request
      *
      * @param array $options
-     * @return RequestInterface
+     * @return OrderStatusRequest
      */
     public function completeAuthorize(array $options = []): RequestInterface
     {
@@ -228,7 +228,7 @@ class Gateway extends AbstractGateway
      * Refund order request
      *
      * @param array $options
-     * @return RequestInterface
+     * @return RefundRequest
      */
     public function refund(array $options = []): RequestInterface
     {
@@ -239,9 +239,9 @@ class Gateway extends AbstractGateway
      * Order status request
      *
      * @param array $options
-     * @return RequestInterface
+     * @return OrderStatusRequest
      */
-    public function completePurchase(array $options = [])
+    public function completePurchase(array $options = []): RequestInterface
     {
         return $this->createRequest(OrderStatusRequest::class, $options);
     }
@@ -250,7 +250,7 @@ class Gateway extends AbstractGateway
      * Order cancellation request
      *
      * @param array $options
-     * @return RequestInterface
+     * @return VoidRequest
      */
     public function void(array $options = []): RequestInterface
     {
@@ -261,7 +261,7 @@ class Gateway extends AbstractGateway
      * Order completion payment request
      *
      * @param array $options
-     * @return RequestInterface
+     * @return CaptureRequest
      */
     public function capture(array $options = []): RequestInterface
     {
@@ -272,7 +272,7 @@ class Gateway extends AbstractGateway
      * Order status request
      *
      * @param array $options
-     * @return RequestInterface
+     * @return OrderStatusRequest
      */
     public function orderStatus(array $options = []): RequestInterface
     {
@@ -293,7 +293,7 @@ class Gateway extends AbstractGateway
      * Extended order status request
      *
      * @param array $options
-     * @return RequestInterface
+     * @return ExtendedOrderStatusRequest
      */
     public function extendedOrderStatus(array $options = []): RequestInterface
     {
@@ -314,7 +314,7 @@ class Gateway extends AbstractGateway
      * Request to verify the involvement of the card in 3DS
      *
      * @param array $options
-     * @return RequestInterface
+     * @return VerifyEnrollmentRequest
      */
     public function verifyEnrollment(array $options = []): RequestInterface
     {
@@ -335,7 +335,7 @@ class Gateway extends AbstractGateway
      * Requesting statistics on payments for the period
      *
      * @param array $options
-     * @return RequestInterface
+     * @return GetLastOrdersForMerchantsRequest
      */
     public function getLastOrdersForMerchants(array $options = []): RequestInterface
     {
@@ -356,7 +356,7 @@ class Gateway extends AbstractGateway
      * Request to add a card to the list of SSL-cards
      *
      * @param array $options
-     * @return RequestInterface
+     * @return UpdateSSLCardListRequest
      */
     public function updateSSLCardList(array $options = []): RequestInterface
     {
@@ -377,7 +377,7 @@ class Gateway extends AbstractGateway
      * Request for activation of a bundle
      *
      * @param array $options
-     * @return RequestInterface
+     * @return BindCardRequest
      */
     public function bindCard(array $options = []): RequestInterface
     {
@@ -398,7 +398,7 @@ class Gateway extends AbstractGateway
      * Request for deactivation of a bundle
      *
      * @param array $options
-     * @return RequestInterface
+     * @return UnBindCardRequest
      */
     public function unBindCard(array $options = []): RequestInterface
     {
@@ -419,7 +419,7 @@ class Gateway extends AbstractGateway
      * Request a list of binders by client ID
      *
      * @param array $options
-     * @return RequestInterface
+     * @return GetBindingsRequest
      */
     public function getBindings(array $options = []): RequestInterface
     {
