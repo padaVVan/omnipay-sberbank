@@ -22,6 +22,8 @@ use Omnipay\Sberbank\Message\VoidRequest;
 /**
  * Class Gateway
  * @package Omnipay\Sberbank
+ * @method \Omnipay\Common\Message\NotificationInterface acceptNotification(array $options = [])
+ * @method \Omnipay\Common\Message\RequestInterface fetchTransaction(array $options = [])
  */
 class Gateway extends AbstractGateway
 {
@@ -50,7 +52,7 @@ class Gateway extends AbstractGateway
             'userName' => '',
             'password' => '',
             'testMode' => false,
-            'endPoint' => 'https://securepayments.sberbank.ru/payment/rest/'
+            'endPoint' => 'https://securepayments.sberbank.ru/payment/rest/',
         ];
     }
 
@@ -63,7 +65,9 @@ class Gateway extends AbstractGateway
     public function setTestMode($testMode)
     {
         $this->setEndPoint(
-            $testMode ? 'https://3dsec.sberbank.ru/payment/rest/' : 'https://securepayments.sberbank.ru/payment/rest/'
+            $testMode
+                ? 'https://3dsec.sberbank.ru/payment/rest/'
+                : 'https://securepayments.sberbank.ru/payment/rest/'
         );
 
         return $this->setParameter('testMode', $testMode);
